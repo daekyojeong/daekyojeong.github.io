@@ -3,7 +3,7 @@ title: "[프로그래밍 언어] C++ - STL 정리"
 author: Daekyo Jeong
 date: 2020-12-12 23:00:00 +0900
 categories: [프로그래밍 언어, Cpp]
-tags: [Programming, Language, Cpp, STL]
+tags: [Programming, Language, Cpp]
 ---
 
 ---
