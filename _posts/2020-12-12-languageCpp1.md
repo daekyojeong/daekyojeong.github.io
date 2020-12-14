@@ -17,7 +17,7 @@ tags: [Programming, Language, Cpp]
 
 <br/>
 
-# **STL(Standar Template Library)**
+# **STL(Standard Template Library)**
 
 ## **Vector**
 
