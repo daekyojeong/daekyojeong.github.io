@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="en" mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="theme" content="Chirpy v2.6.2"><meta name="generator" content="Jekyll v4.2.1" /><meta property="og:title" content="[Design Patterns] Strategy Pattern" /><meta name="author" content="Daekyo Jeong" /><meta property="og:locale" content="en_US" /><meta name="description" content="Contents" /><meta property="og:description" content="Contents" /><link rel="canonical" href="https://daekyojeong.github.io/posts/Design1/" /><meta property="og:url" content="https://daekyojeong.github.io/posts/Design1/" /><meta property="og:site_name" content="학습 일기장" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2021-04-14T23:00:00+09:00" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"description":"Contents","mainEntityOfPage":{"@type":"WebPage","@id":"https://daekyojeong.github.io/posts/Design1/"},"@type":"BlogPosting","url":"https://daekyojeong.github.io/posts/Design1/","headline":"[Design Patterns] Strategy Pattern","dateModified":"2021-04-24T23:06:38+09:00","datePublished":"2021-04-14T23:00:00+09:00","author":{"@type":"Person","name":"Daekyo Jeong"},"@context":"https://schema.org"}</script><title>[Design Patterns] Strategy Pattern | 학습 일기장</title><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon.png"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon-precomposed.png"><link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicons/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicons/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/manifest.json"><meta name='msapplication-config' content='/assets/img/favicons/browserconfig.xml'><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/assets/img/favicons/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="cdn.jsdelivr.net"><link rel="dns-prefetch" href="cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"><link rel="preload" as="style" href="/assets/css/post.css"><link rel="stylesheet" href="/assets/css/post.css"><link rel="preload" as="style" href="/assets/css/lib/bootstrap-toc.min.css"><link rel="stylesheet" href="/assets/css/lib/bootstrap-toc.min.css" /> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script async src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script async src="/assets/js/post.min.js"></script> <script defer src="/app.js"></script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column"><div id="nav-wrapper"><div id="profile-wrapper" class="d-flex flex-column"><div id="avatar" class="d-flex justify-content-center"> <a href="/" alt="avatar"> <img src="/assets/img/sample/avatar.jpg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="profile-text mt-3"><div class="site-title"> <a href="/">학습 일기장</a></div><div class="site-subtitle font-italic"></div></div></div><ul class="nav flex-column"><li class="nav-item d-flex justify-content-center "> <a href="/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/categories/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/tags/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/archives/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item d-flex justify-content-center "> <a href="/tabs/about/" class="nav-link d-flex justify-content-center align-items-center w-100"> <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul></div><div class="sidebar-bottom d-flex flex-wrap justify-content-around mt-4"> <a href="https://github.com/daekyojeong" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github-alt"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['daekyo.jeong','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Posts </a> </span> <span>[Design Patterns] Strategy Pattern</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" placeholder="Search..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>[Design Patterns] Strategy Pattern</h1><div class="post-meta text-muted d-flex flex-column"><div> Posted <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="Wed, Apr 14, 2021, 11:00 PM +0900" > Apr 14 <i class="unloaded">2021-04-14T23:00:00+09:00</i> </span> by <span class="author"> Daekyo Jeong </span></div><div> Updated <span class="timeago lastmod" data-toggle="tooltip" data-placement="bottom" title="Sat, Apr 24, 2021, 11:06 PM +0900" > Apr 24 <i class="unloaded">2021-04-24T23:06:38+09:00</i> </span></div></div><div class="post-content"><hr /><p><strong>Contents</strong></p><ul class="no_toc" id="markdown-toc"><li><a href="#스트래티지-패턴strategy-pattern" id="markdown-toc-스트래티지-패턴strategy-pattern">스트래티지 패턴(Strategy Pattern)</a><ul><li><a href="#코드에서-달라지는-부분을-찾아내고-달라지지-않는-부분으로부터-분리시킨다" id="markdown-toc-코드에서-달라지는-부분을-찾아내고-달라지지-않는-부분으로부터-분리시킨다">코드에서 달라지는 부분을 찾아내고, 달라지지 않는 부분으로부터 분리시킨다.</a><li><a href="#구현이-아닌-인터페이스에-맞춰서-프로그래밍한다" id="markdown-toc-구현이-아닌-인터페이스에-맞춰서-프로그래밍한다">구현이 아닌 인터페이스에 맞춰서 프로그래밍한다.</a><li><a href="#상속보다는-구성을-활용한다" id="markdown-toc-상속보다는-구성을-활용한다">상속보다는 구성을 활용한다.</a></ul></ul><hr /><p><br /></p><h1 id="스트래티지-패턴strategy-pattern">스트래티지 패턴(Strategy Pattern)</h1><p>알고리즘군을 정의하고 각각을 캡슐화하여 교환 가능하도록 만들어준다.</p><h4 id="코드에서-달라지는-부분을-찾아내고-달라지지-않는-부분으로부터-분리시킨다">코드에서 달라지는 부분을 찾아내고, 달라지지 않는 부분으로부터 분리시킨다.</h4><p>바뀌는 부분을 따로 뽑아서 캡슐화시키자.<br /> 그러면 나중에 바뀌지 않는 부분에 영향을 미치지 않는채로 해당 부분만 수정하거나 확장할 수 있다.</p><h4 id="구현이-아닌-인터페이스에-맞춰서-프로그래밍한다">구현이 아닌 인터페이스에 맞춰서 프로그래밍한다.</h4><p>이는 상위 형식에 맞춰서 프로그래밍한다는 의미이다.<br /> 파이썬에는 따로 인터페이스가 존재하지 않고, 모두 추상 클래스로 표현한다.</p><p>예를 들어보자.</p><p>Animal이라는 추상 클래스가 있고, Dog, Cat이라는 구상 클래스가 있을 때 다음과 같이 구성할 수 있다.</p><div class="language-py highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre><td class="rouge-code"><pre><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="o">@</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">makeSound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">makeSound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">bark</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">bark</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'멍멍'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Cat</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">makeSound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">meow</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'야옹'</span><span class="p">)</span>
+
+<span class="n">dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span>
+<span class="n">dog</span><span class="p">.</span><span class="n">makeSound</span><span class="p">()</span>
+
+<span class="n">cat</span> <span class="o">=</span> <span class="n">Cat</span><span class="p">()</span>
+<span class="n">cat</span><span class="p">.</span><span class="n">makeSound</span><span class="p">()</span>
+</pre></table></code></div></div><p>상위 인터페이스 형식에 맞추어 구현한다면 코드는 훨씬 보기 좋아진다.<br /> 또한 makeSound라는 기능 자체는 변하지 않고, 각 클래스 별로 세분화하여 코드를 구성할 수 있다.</p><p>이런식으로 디자인한다면, 재사용이 용이해진다.<br /> 또한 기존의 코드를 건드리지 않고, 새로운 행동을 추가할 수 있다.</p><h4 id="상속보다는-구성을-활용한다">상속보다는 구성을 활용한다.</h4><p>A는 B이다. 보다 A에는 B가 있다가 나을 수 있다.<br /> A에는 B가 있다.를 구성을 이용하는 것이라고 부른다.<br /> 구성을 이용하여 시스템을 만들면 유연성을 크게 향상시킬 수 있다.</p><p>게임에서 다양한 캐릭터들이 있고, 사용할 무기들이 존재한다.<br /> 한 캐릭터는 한 번에 한 가지 무기를 사용할 수 있고, 무기는 교체할 수 있다.<br /> 이를 위에서 배운 방법들을 사용하면 다음과 같이 짤 수 있다.</p><div class="language-py highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+</pre><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Character</span><span class="p">(</span><span class="n">metaclass</span> <span class="o">=</span> <span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">weaponBehavior</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="o">@</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">fight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">setWeapon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weaponBehavior</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">weaponBehavior</span> <span class="o">=</span> <span class="n">weaponBehavior</span>
+
+<span class="k">class</span> <span class="nc">Queen</span><span class="p">(</span><span class="n">Character</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">weaponBehavior</span> <span class="o">=</span> <span class="n">SwordBehavior</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">fight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">weaponBehavior</span><span class="p">.</span><span class="n">useWeapon</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">King</span><span class="p">(</span><span class="n">Character</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">weaponBehavior</span> <span class="o">=</span> <span class="n">SwordBehavior</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">fight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">weaponBehavior</span><span class="p">.</span><span class="n">useWeapon</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">Troll</span><span class="p">(</span><span class="n">Character</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">weaponBehavior</span> <span class="o">=</span> <span class="n">AxeBehavior</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">fight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">weaponBehavior</span><span class="p">.</span><span class="n">useWeapon</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">Knight</span><span class="p">(</span><span class="n">Character</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">weaponBehavior</span> <span class="o">=</span> <span class="n">KniftBehavior</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">fight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">weaponBehavior</span><span class="p">.</span><span class="n">useWeapon</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">WeaponBehavior</span><span class="p">(</span><span class="n">metaclass</span> <span class="o">=</span> <span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="o">@</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">useWeapon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">KnifeBehavior</span><span class="p">(</span><span class="n">WeaponBehavior</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">useWeapon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'서걱'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">BowAndArrowBehavior</span><span class="p">(</span><span class="n">WeaponBehavior</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">useWeapon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'푱'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">AxeBehavior</span><span class="p">(</span><span class="n">WeaponBehavior</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">useWeapon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'쾅'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">SwordBehavior</span><span class="p">(</span><span class="n">WeaponBehavior</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">useWeapon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'슝'</span><span class="p">)</span>
+
+<span class="n">queen</span> <span class="o">=</span> <span class="n">Queen</span><span class="p">()</span>
+<span class="n">queen</span><span class="p">.</span><span class="n">fight</span><span class="p">()</span>
+<span class="n">queen</span><span class="p">.</span><span class="n">setWeapon</span><span class="p">(</span><span class="n">BowAndArrowBehavior</span><span class="p">())</span>
+<span class="n">queen</span><span class="p">.</span><span class="n">fight</span><span class="p">()</span>
+
+<span class="n">troll</span> <span class="o">=</span> <span class="n">Troll</span><span class="p">()</span>
+<span class="n">troll</span><span class="p">.</span><span class="n">fight</span><span class="p">()</span>
+<span class="n">troll</span><span class="p">.</span><span class="n">setWeapon</span><span class="p">(</span><span class="n">KnifeBehavior</span><span class="p">())</span>
+<span class="n">troll</span><span class="p">.</span><span class="n">fight</span><span class="p">()</span>
+
+<span class="n">king</span> <span class="o">=</span> <span class="n">King</span><span class="p">()</span>
+<span class="n">king</span><span class="p">.</span><span class="n">fight</span><span class="p">()</span>
+</pre></table></code></div></div><p><br /></p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%96%B8%EC%96%B4/'>프로그래밍 언어</a>, <a href='/categories/design-patterns/'>Design Patterns</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/programming/" class="post-tag no-text-decoration" >Programming</a> <a href="/tags/language/" class="post-tag no-text-decoration" >Language</a> <a href="/tags/design-patterns/" class="post-tag no-text-decoration" >Design Patterns</a> <a href="/tags/strategy-pattern/" class="post-tag no-text-decoration" >strategy pattern</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=[Design Patterns] Strategy Pattern - 학습 일기장&url=https://daekyojeong.github.io/posts/Design1/" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=[Design Patterns] Strategy Pattern - 학습 일기장&u=https://daekyojeong.github.io/posts/Design1/" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=[Design Patterns] Strategy Pattern - 학습 일기장&url=https://daekyojeong.github.io/posts/Design1/" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i class="fa-fw fas fa-link small" onclick="copyLink()" data-toggle="tooltip" data-placement="top" title="Copy link"></i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div class="access"><div id="access-lastmod" class="post"> <span>Recent Update</span><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/BOJ92/">[알고리즘] 백준 1976 - 여행 가자</a><li><a href="/posts/Algorithm103/">[알고리즘] 프로그래머스 - 쿼드압축 후 개수 세기</a><li><a href="/posts/Algorithm102/">[알고리즘] 프로그래머스 - 타겟 넘버</a><li><a href="/posts/Algorithm104/">[알고리즘] 프로그래머스 - 수식 최대화</a><li><a href="/posts/Algorithm105/">[알고리즘] 프로그래머스 - [1차] 캐시</a></ul></div><div id="access-tags"> <span>Trending Tags</span><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/python/">Python</a> <a class="post-tag" href="/tags/algorithm/">Algorithm</a> <a class="post-tag" href="/tags/programmers/">Programmers</a> <a class="post-tag" href="/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a> <a class="post-tag" href="/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</a> <a class="post-tag" href="/tags/boj/">BOJ</a> <a class="post-tag" href="/tags/%EB%B0%B1%EC%A4%80/">백준</a> <a class="post-tag" href="/tags/cpp/">Cpp</a> <a class="post-tag" href="/tags/ai/">AI</a> <a class="post-tag" href="/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a></div></div></div><div id="toc-wrapper" class="pl-0 pr-4 mb-5"> <span class="pl-3 pt-2 mb-2">Contents</span><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/Design2/"><div class="card-body"> <span class="timeago small" > Apr 23 <i class="unloaded">2021-04-23T23:00:00+09:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>[Design Patterns] Observer Pattern</h3><div class="text-muted small"><p> Contents 옵저버 패턴(Observer Pattern) 서로 상호작용을 하는 객체 사이에서는 가능하면 느슨하게 결합하는 디자인을 사용하자. 옵저버 패턴(Observer Pattern) 옵저버 패턴은 어떤 사건이 발생 했을 때 객체들에게 사건을 알려줄 수 있는 패턴이다. 옵저버 패턴은 크게 주제...</p></div></div></a></div><div class="card"> <a href="/posts/languagePython3/"><div class="card-body"> <span class="timeago small" > Apr 14 <i class="unloaded">2021-04-14T19:00:00+09:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>[프로그래밍 언어] 파이썬 - Pandas</h3><div class="text-muted small"><p> Contents Pandas 자주 사용하는 문법 정리 Read write Pandas 자주 사용하는 문법 정리 Read pd.read_csv(filePath, params) 자주 사용하는 params sep = ‘,’ header = None (저장된 파일에 header가...</p></div></div></a></div><div class="card"> <a href="/posts/languagePython1/"><div class="card-body"> <span class="timeago small" > Dec 7, 2020 <i class="unloaded">2020-12-07T23:00:00+09:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>[프로그래밍 언어] 파이썬 - 자료 구조</h3><div class="text-muted small"><p> Contents 자료 구조 줄 결합 문자열 List Tuple Dictionary Set 자료 구조 줄 결합 \ 를 사용하여 명시적으로 두 개 이상의 라인을 결합할 수 있다. [], {}, () 가 사용되는 경우 \ 없이 줄을 나눠도 된다. ...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/languagePython3/" class="btn btn-outline-primary"><p>[프로그래밍 언어] 파이썬 - Pandas</p></a> <a href="/posts/Anaconda1/" class="btn btn-outline-primary"><p>[Anaconda] 윈도우 아나콘다 기본 사용법</p></a></div></div></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script> <script type="text/javascript"> const imgs = document.querySelectorAll('#post-wrapper img'); const observer = lozad(imgs); observer.observe(); </script><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2021 <a href="https://github.com/daekyojeong">Daekyo Jeong</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy/" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-xl-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">Trending Tags</h4><a class="post-tag" href="/tags/python/">Python</a> <a class="post-tag" href="/tags/algorithm/">Algorithm</a> <a class="post-tag" href="/tags/programmers/">Programmers</a> <a class="post-tag" href="/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a> <a class="post-tag" href="/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/">파이썬</a> <a class="post-tag" href="/tags/boj/">BOJ</a> <a class="post-tag" href="/tags/%EB%B0%B1%EC%A4%80/">백준</a> <a class="post-tag" href="/tags/cpp/">Cpp</a> <a class="post-tag" href="/tags/ai/">AI</a> <a class="post-tag" href="/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/">프로그래머스</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="https://daekyojeong.github.io{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"><div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>{categories}</div><div><i class="fa fa-tag fa-fw"></i>{tags}</div></div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>' }); </script> <script async src="https://www.googletagmanager.com/gtag/js?id="></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', ''); </script>
